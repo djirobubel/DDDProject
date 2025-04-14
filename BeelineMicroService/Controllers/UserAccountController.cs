@@ -19,7 +19,7 @@ namespace BeelineMicroService.Controllers
         {
             var userAccount = await _provider.GetAggregateAsync(id);
             var result = await userAccount.AddBalanceAsync(amount);
-                                                                    // сохранение отключено в провайдере
+                                                                    
             if (result.Success)
             {
                 return Ok(new { result.Version, result.Message });
@@ -32,7 +32,7 @@ namespace BeelineMicroService.Controllers
         {
             var userAccount = await _provider.GetAggregateAsync(id);
             var result = await userAccount.BlockUserAsync();
-                                                             // cохранение отключено в провайдере
+                                                             
             if (result.Success)
             {
                 return Ok(new { result.Version, result.Message });
