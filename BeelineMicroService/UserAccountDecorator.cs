@@ -18,13 +18,17 @@ namespace BeelineMicroService
 
         public long Version => _userAccountAggregate.Version;
 
+        public decimal Balance => _userAccountAggregate.Balance;
+
         public async Task<AggregateResult> AddBalanceAsync(decimal amount)
         {
             var result = await _userAccountAggregate.AddBalanceAsync(amount);
 
             if (result.Success)
             {
-                await _eventBus.Publish(new BalanceAdded(Id, amount));
+                var oldBalance = _userAccountAggregate.Balance - amount;
+                var newBalance = _userAccountAggregate.Balance;
+                await _eventBus.Publish(new BalanceAdded(Id, oldBalance, newBalance));
             }
 
             return result;
