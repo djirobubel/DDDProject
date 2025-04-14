@@ -1,6 +1,5 @@
 ﻿using BeelineMicroService.EventBus;
 using BeelineMicroService.Repositories;
-using MediatR;
 
 namespace BeelineMicroService.Provider
 {
@@ -24,8 +23,8 @@ namespace BeelineMicroService.Provider
 
         public Task SaveAggregateAsync(IUserAccountAggregate aggregate)
         {
-            // сохранение отключено
-            Console.WriteLine("Сохранение отключено до реализации обработчика событий.");
+            // не используется, так как сохранение происходит через EventHandler
+            Console.WriteLine("Данный метод - заглушка, так как сохранение происходит через EventHandler.");
             return Task.CompletedTask;
         }
     }
